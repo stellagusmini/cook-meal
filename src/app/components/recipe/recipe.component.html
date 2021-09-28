@@ -1,0 +1,48 @@
+<div class="row" *ngIf="recipe">
+    <div class="col-12 color2">
+        <a [routerLink]="['/home']" routerLinkActive="active"  class="color2">           
+            <fa-icon class="pe-2" [icon]="faAngleLeft"></fa-icon> Previous 
+        </a>
+    </div>
+    <div class="pt-2 col-12 col-lg-4">
+        <img class="w-100" [src]="recipe.strMealThumb"/>
+        <div class="w-100 pt-3" *ngIf="recipe.strYoutube">
+            <iframe class="w-100" [src]="safeVideo(recipe.strYoutube)">
+            </iframe>
+        </div>
+    </div>
+    
+
+    <div class="pt-2 col-lg-8">
+        <h3 class="color2">
+            {{recipe.strMeal}}                                
+            <fa-icon title="To test" 
+                (click)="localStorage.addRemoveToTest(recipe.idMeal)" 
+                class="test fa-sm ps-3" [ngClass]="{ 'selected': localStorage.isToTest(recipe.idMeal)}"
+                [icon]="faFlask"></fa-icon>
+            <fa-icon title="Add/Remove to favorites" 
+                (click)="localStorage.addRemoveToFavorite(recipe.idMeal)" 
+                class="favorite fa-sm ps-3" [ngClass]="{ 'selected': localStorage.isFavorite(recipe.idMeal)}"
+                [icon]="faHeart"></fa-icon>     
+        </h3>
+        <p class="info">
+            <ng-container *ngIf="recipe.strCategory">Category: {{recipe.strCategory}}</ng-container>
+            <ng-container *ngIf="recipe.strArea"> - Area: {{recipe.strArea}}</ng-container>
+        </p>
+        <h4 class="color2"><fa-icon class="pe-2" [icon]="faShoppingBasket"></fa-icon> Ingredients </h4>
+        <p class="col-12">
+            <ng-container *ngFor="let ingredient of getIngredients()">
+                {{ingredient}} <br/>
+            </ng-container>
+        </p>
+        <h4 class="color2"><fa-icon class="pe-2" [icon]="faBlender"></fa-icon> Instructions </h4>
+        <p>{{recipe.strInstructions}}</p>
+        <p class="col-12 source" *ngIf="recipe.strSource">
+            <span>Source : 
+                <a [href]="recipe.strSource" target="_bank">           
+                    {{recipe.strSource}}
+                </a>
+            </span>
+        </p>
+    </div>
+</div>

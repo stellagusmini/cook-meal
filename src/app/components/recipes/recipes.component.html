@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="pb-3 col-lg-4 col-12 recipe" *ngFor="let recipe of recipes">
+        <div class="col-12 position-relative" >
+            <a [routerLink]="['/recipe-details', recipe.idMeal]" routerLinkActive="active" >
+                <img class="w-100" [src]="recipe.strMealThumb"/>
+            </a>
+            <div class="description position-absolute bottom-0 left-0">
+                <div class="p-2">
+                    <h5 class="color2">
+                        {{recipe.strMeal}}                                                
+                        <fa-icon title="Add/Remove to favorites" 
+                        (click)="localStorage.addRemoveToFavorite(recipe.idMeal)" 
+                        class="favorite fa-sm float-end" [ngClass]="{ 'selected': localStorage.isFavorite(recipe.idMeal)}"
+                        [icon]="faHeart"></fa-icon>                                    
+                        <fa-icon title="To test" 
+                        (click)="localStorage.addRemoveToTest(recipe.idMeal)" 
+                        class="test fa-sm float-end pe-3" [ngClass]="{ 'selected': localStorage.isToTest(recipe.idMeal)}"
+                        [icon]="faFlask"></fa-icon>
+                    </h5>
+                    <div class="recipe-desc">
+                        <span>Number of ingredients: {{getIngredientsNumber(recipe)}}</span><br/>
+                        Category: {{recipe.strCategory}}<br/>
+                        <ng-container *ngIf="recipe.strInstructions">
+                            Instructions: {{ (recipe.strInstructions.length>60)? (recipe.strInstructions | slice:0:60)+'..':(recipe.strInstructions) }} 
+                        </ng-container>
+                        <a [routerLink]="['/recipe-details', recipe.idMeal]" routerLinkActive="active" class="float-end mt-2 pb-2 color2">
+                            <span class="pe-2">go to recipe</span> 
+                            <fa-icon [icon]="faAngleRight"></fa-icon>
+                        </a>
+                    </div>                    
+                </div>                
+            </div>
+        </div>        
+    </div>    
+</div>

@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import './variables.less';
+
+body {
+    background:#f3f3f3;
+    background-image: url('./assets/img/background.jpg');
+    background-size: 100%;
+    font-family: serif;
+    font-size: 1.2em;
+}
+
+.color2{
+    color: @color2;
+}
+
+a {
+    font-size: 1.2em;
+    text-decoration: none;
+    color: @color2;
+    &:hover{
+        color: @color2;
+        font-weight: 600;
+    }
+}
+
+
+.test{
+    &.selected {
+        color: #559860;
+    } 
+    &:hover{        
+        color: #559860a8;
+    }
+}
+
+.favorite{
+    &.selected {
+        color: #FF4269;
+    } 
+    &:hover{        
+        color: #ff426898;
+    }
+}
+
+.favorite, .test{
+    font-size: 1em;
+    color:#a09e9eef;
+    cursor: pointer;
+}

@@ -1,0 +1,4 @@
+
+    <app-search [categories]="categories"
+    (searchFilterChanged)="updateRecipesByRecipeName($event)" (categoryChanged)="updateRecipesByCategoryName($event)"></app-search>
+    <app-recipes [recipes]="recipes"></app-recipes>

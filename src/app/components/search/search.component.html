@@ -1,0 +1,25 @@
+
+<form [formGroup]="searchForm">
+    <div class="row pb-4">
+        <div class="col-6 col-lg-4">
+            <div class="col-12">
+                <fa-icon class="pt-2 pe-2" [icon]="faUtensils"></fa-icon>
+                <label class="pt-2 color2">Search a recipe</label>
+            </div>
+            <div class="col-12 input-group position-relative">
+                <input formControlName="searchText" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <fa-icon class="position-absolute p-2 top-0 end-0 " [icon]="faSearch"></fa-icon>
+            </div>
+        </div>
+        <div class="col-6 col-lg-4">
+            <div class="col-12">
+                <fa-icon class="pt-2 pe-2" [icon]="faBook"></fa-icon>
+                <label class="pt-2 color2">Search by category</label>
+            </div>
+            <select formControlName="category" class="col-12 form-select" (change)="updateCategory(searchForm.controls.category.value)">
+                <option [ngValue]="'all'">All categories</option>
+                <option *ngFor="let cat of categories" [ngValue]="cat.strCategory">{{ cat.strCategory }}</option>
+            </select>
+        </div>
+    </div>
+</form>
